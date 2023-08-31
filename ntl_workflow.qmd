@@ -51,11 +51,11 @@ In our case we only need the `tidyverse`
 Here are the steps or targets of our workflow:
 
 ```{r, eval=FALSE}
-  # Air temperature raw data
+  # Air temperature raw data, this is the input file
   tar_target(file_air, "data/ntl_airtemp.csv", format = "file"),
-  # Lake ice cover raw data
+  # Lake ice cover raw data, this is the input file
   tar_target(file_ice, "data/ntl_icecover.csv", format = "file"),
-  # Reading the air temp data
+  # Reading the air temp data, have R read these files
   tar_target(data_air, get_data(file_air)),
   # Reading the ice cover data
   tar_target(data_ice, get_data(file_ice)),
@@ -79,23 +79,27 @@ tar_manifest()
 #### visualize
 
 ```{r}
+#what does this workflow look like
 tar_visnetwork()
 ```
 
 ### Run the workflow
 
 ```{r}
+#running all the steps
 tar_make()
 ```
 ### look at the plot (our output in this example)
 
 ```{r}
+#what output is created from my workflow
 tar_read(scatterplot)
 ```
 
 Try to rerun the workflow:
 
 ```{r}
+# will not re-run anything just show that nothing has changed at this point
 tar_make()
 ```
 

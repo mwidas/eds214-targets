@@ -26,7 +26,7 @@ ntl_airtemp_hydro <- my_ntl_airtemp %>%
 ntl_airtemp_avg_winter <-  ntl_airtemp_hydro %>%
   filter(month(sampledate) %in% c(11:12,1:4)) %>% # filter the months from Nov to April
   group_by(hydroyear) %>%
-  summarise(avg_air_temp_adjusted = mean(ave_air_temp_adjusted))
+  summarise(avg_air_temp_adjusted = max(ave_air_temp_adjusted))
 }
 
 
@@ -50,7 +50,7 @@ scatter_ntl<- function(ntl_all){
     ) +
     geom_smooth(
       method = "lm",
-      color = "black",
+      color = "blue",
       se = FALSE,
       linewidth = 0.3
     )
